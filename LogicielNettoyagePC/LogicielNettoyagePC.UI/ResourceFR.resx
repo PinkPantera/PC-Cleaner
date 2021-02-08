@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddBtnTxt" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="AnalysisInProgressTxt" xml:space="preserve">
+    <value>Analyse en cours ...</value>
+  </data>
+  <data name="AnalyzeBtnTxt" xml:space="preserve">
+    <value>Analyser</value>
+  </data>
+  <data name="Analyzer" xml:space="preserve">
+    <value>Analyseur</value>
+  </data>
+  <data name="AttantionTxt" xml:space="preserve">
+    <value>! Attention, pour fonctionner, le logiciel doit être lancé en mode administrateur.</value>
+  </data>
+  <data name="CancelBtnTxt" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="CleanBtnTxt" xml:space="preserve">
+    <value>Nettoyer</value>
+  </data>
+  <data name="CleaningInProgressTxt" xml:space="preserve">
+    <value>Nettoyage en cours ...</value>
+  </data>
+  <data name="CopyrightTxt" xml:space="preserve">
+    <value>Copyright 2021 PinkPantera</value>
+  </data>
+  <data name="DeleteFolder" xml:space="preserve">
+    <value>Supprimer le dossier de cette liste</value>
+  </data>
+  <data name="DirectoryAddedFail" xml:space="preserve">
+    <value>Echec de l'ajout du dossier</value>
+  </data>
+  <data name="DirectoryNameTxt" xml:space="preserve">
+    <value>Nom du dossier</value>
+  </data>
+  <data name="EmptyMb" xml:space="preserve">
+    <value>??? Mb</value>
+  </data>
+  <data name="FolderInvalid" xml:space="preserve">
+    <value>Le dossier n'est pas valide</value>
+  </data>
+  <data name="HistoricBtnTxt" xml:space="preserve">
+    <value>Historique</value>
+  </data>
+  <data name="HistoryPageCaptionTxt" xml:space="preserve">
+    <value>Historique</value>
+  </data>
+  <data name="HomePageTitle" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="LastAnalysisTxt" xml:space="preserve">
+    <value>Dernière analyse: </value>
+  </data>
+  <data name="ListDirectoriesToProcessTxt" xml:space="preserve">
+    <value>Liste des dossiers à traiter</value>
+  </data>
+  <data name="ManualAnalyseTxt" xml:space="preserve">
+    <value>Pour nettoyer votre ordinateur il faut choisir le menu «Analyseur». En  y cliquant sur le bouton « Analyser» vous aurez le détail des éléments à nettoyer. Clique sur le bouton « Nettoyer » et effectue le nettoyage.</value>
+  </data>
+  <data name="ManualHistoryTxt" xml:space="preserve">
+    <value>Vous pouvez visualiser l'historique de nettoyage via la rubrique « Historique ». Vous y verrez l’information sur les dix derniers nettoyages.</value>
+  </data>
+  <data name="ManualOptionsTxt" xml:space="preserve">
+    <value>Le menu « Options » vous permettra de modifier la liste des dossiers à traiter.</value>
+  </data>
+  <data name="NeedToCleanTxt" xml:space="preserve">
+    <value>Pour effacer votre ordinateur des fichiers temporaires, cliquez sur "Nettoyer"</value>
+  </data>
+  <data name="NeverTxt" xml:space="preserve">
+    <value>Jamais</value>
+  </data>
+  <data name="NewBtnTxt" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="PathTxt" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="PerformAnalysisTxt" xml:space="preserve">
+    <value>Effectuez l'analyse en cliquant sur "Analyser"</value>
+  </data>
+  <data name="PresentationText" xml:space="preserve">
+    <value>NETTOYAGE PC est un logiciel qui nettoie votre PC et libérez de l'espace sur votre disque.</value>
+  </data>
+  <data name="ResultsOfAnalise" xml:space="preserve">
+    <value>Résultats de l'analyse</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Sélectionner tous</value>
+  </data>
+  <data name="SelectBtnTxt" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
+  <data name="SelectResourcesrToCleanTxt" xml:space="preserve">
+    <value>Sélectionnez des éléments à nettoyer</value>
+  </data>
+  <data name="SettingsTxt" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="SiteBtnTxt" xml:space="preserve">
+    <value>Site-Web</value>
+  </data>
+  <data name="SpaceToCleanTxt" xml:space="preserve">
+    <value>Total espace à nettoyer:</value>
+  </data>
+  <data name="TopTitle" xml:space="preserve">
+    <value>Analise du PC nécessaire</value>
+  </data>
+  <data name="UpdateBtnTxt" xml:space="preserve">
+    <value>Mis à jour</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>NETTOYAGE PC</value>
+  </data>
+</root>

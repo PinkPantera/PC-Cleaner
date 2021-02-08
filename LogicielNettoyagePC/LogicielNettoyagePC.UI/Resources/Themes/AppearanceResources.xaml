@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <BitmapImage x:Key="ApplicationIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/AppLogo.ico" />
+    <BitmapImage x:Key="CleanIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Remove.png" />
+    <BitmapImage x:Key="HistoryIcon"
+                        UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/History.png" />
+
+    <BitmapImage x:Key="RefreshIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Rrefresh.png" />
+    <BitmapImage x:Key="WebsiteIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Website.png" />
+    <BitmapImage x:Key="MainIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/icons8-clean.png" />
+    <BitmapImage x:Key="FindIcon"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Find.png" />
+    <BitmapImage x:Key="Settings"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Settings.png" />
+    <BitmapImage x:Key="Analiser"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Analiser.png" />
+    <BitmapImage x:Key="Delete"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Delete.png" />
+    <BitmapImage x:Key="Cercle"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Cercle.png" />
+
+</ResourceDictionary>

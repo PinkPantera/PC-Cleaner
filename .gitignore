@@ -1,0 +1,11 @@
+
+LogicielNettoyagePC/.vs
+*.ide
+*/**/bin/
+*/**/bin/Debug
+*/**/bin/Release
+*/**/obj/
+*/**/obj/Debug
+*/**/obj/Release
+LogicielNettoyagePC/.vs/LogicielNettoyagePC/v16/.suo
+LogicielNettoyagePC/.vs/LogicielNettoyagePC/v16/Server/sqlite3/db.lock

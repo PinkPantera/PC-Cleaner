@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LogicielNettoyagePC.StartUp" GeneratedClassName="SettingsApp">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileSettings" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Settings.xml</Value>
+    </Setting>
+    <Setting Name="FileHistory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AnalyseHistory.xml</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

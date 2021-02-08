@@ -1,0 +1,138 @@
+﻿<Window x:Class="LogicielNettoyagePC.UI.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:LogicielNettoyagePC.UI"
+        xmlns:converters="clr-namespace:LogicielNettoyagePC.UI.Converters"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:enum="clr-namespace:LogicielNettoyagePC.UI.Common"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="550"
+        Width="800"
+        ResizeMode="NoResize"
+        Title="{Binding WindowTitle}"
+        Icon="{DynamicResource ResourceKey=ApplicationIcon}">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing" >
+            <i:InvokeCommandAction Command="{Binding ExitCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Themes/AppearanceResources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/LogicielNettoyagePC.UI;component/Style/LogicielNettoyagePCStyle.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/LogicielNettoyagePC.UI;component/Style/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Header-->
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource Header}" Margin="2 0 2 2" >
+            <Image Source="{DynamicResource MainIcon}" Width="50" Height="80" Cursor="Hand" ToolTip="{x:Static resx:ResourceFR.HomePageTitle}">
+                <Image.InputBindings>
+                    <MouseBinding Gesture="LeftClick" Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.Main}" />
+                </Image.InputBindings>
+            </Image>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource Header}" Margin="0 0 2 2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource TopLabel}"
+                       Content="{Binding TopTitle}" VerticalAlignment="Center" Margin="10 10 0 0"/>
+                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource TextLabel}" 
+                       Content="{x:Static resx:ResourceFR.LastAnalysisTxt}"/>
+                <Label Grid.Row="1" Grid.Column="2" Style="{StaticResource TextLabel}" 
+                       Content="{Binding DateOfLastAnalises}"/>
+
+            </Grid>
+        </Border>
+        <Border Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource SeparatePart}"/>
+
+        <!--Menu-->
+        <Button  Grid.Row="2" Grid.Column="0"  Style="{StaticResource BigButton}" 
+                 Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.Analyse}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource FindIcon}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.Analyzer}" Style="{StaticResource TextLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Button  Grid.Row="3" Grid.Column="0" Style="{StaticResource BigButton}"  
+                  Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.Update}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource RefreshIcon}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.UpdateBtnTxt}" Style="{StaticResource TextLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Button  Grid.Row="4" Grid.Column="0" Style="{StaticResource BigButton}"
+                  Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.History}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource HistoryIcon}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.HistoricBtnTxt}" Style="{StaticResource TextLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Button  Grid.Row="5" Grid.Column="0" Style="{StaticResource BigButton}"   
+                 Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.Settings}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Settings}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.SettingsTxt}" Style="{StaticResource TextLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Button  Grid.Row="6" Grid.Column="0" Style="{StaticResource BigButton}" Command="{Binding WebCommand}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource WebsiteIcon}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.SiteBtnTxt}" Style="{StaticResource TextLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Label Grid.Row="7" Grid.Column="0" Content="{Binding Version}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
+        <Label Grid.Row="8" Grid.Column="0" Content="{x:Static resx:ResourceFR.CopyrightTxt}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
+
+        <!--Content-->
+        <ContentControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="7" Margin=" 10 0 5 20" VerticalAlignment="Top"
+                        Content="{Binding SelectedPage}" Focusable="False" />
+
+        <!--Footer-->
+
+        <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BottomPart}"  Visibility="{Binding CanShowInformation, Converter={converters:BooleanToVisibility}}" >
+            <Label Content="{Binding Information}" Style="{StaticResource InformationText}"/>
+        </Border>
+
+    </Grid>
+
+</Window>

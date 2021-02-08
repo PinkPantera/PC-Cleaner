@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="AppWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AnalysePageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\HistoryPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\MainPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SettingPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UpdatePageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AppWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Themes\AppearanceResources.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\LogicielNettoyagePCStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AnalysePageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\HistoryPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MainPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UpdatePageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
