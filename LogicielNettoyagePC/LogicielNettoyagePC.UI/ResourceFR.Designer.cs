@@ -259,6 +259,15 @@ namespace LogicielNettoyagePC.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Navigateur.
+        /// </summary>
+        public static string NavigatorTxt {
+            get {
+                return ResourceManager.GetString("NavigatorTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pour effacer votre ordinateur des fichiers temporaires, cliquez sur &quot;Nettoyer&quot;.
         /// </summary>
         public static string NeedToCleanTxt {
@@ -282,6 +291,15 @@ namespace LogicielNettoyagePC.UI {
         public static string NewBtnTxt {
             get {
                 return ResourceManager.GetString("NewBtnTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ouvrir dans le navigateur externe.
+        /// </summary>
+        public static string OpenURLInExternalNavigatorTxt {
+            get {
+                return ResourceManager.GetString("OpenURLInExternalNavigatorTxt", resourceCulture);
             }
         }
         
@@ -390,6 +408,15 @@ namespace LogicielNettoyagePC.UI {
         public static string UpdateBtnTxt {
             get {
                 return ResourceManager.GetString("UpdateBtnTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/PinkPantera/PC-Cleaner.
+        /// </summary>
+        public static string UrlTxt {
+            get {
+                return ResourceManager.GetString("UrlTxt", resourceCulture);
             }
         }
         

@@ -14,6 +14,9 @@
     <Compile Update="Views\MainPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\NavigatorPageView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SettingPageView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -41,6 +44,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MainPageView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\NavigatorPageView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SettingPageView.xaml">

@@ -24,5 +24,8 @@
                          UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Delete.png" />
     <BitmapImage x:Key="Cercle"
                          UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Cercle.png" />
+    <BitmapImage x:Key="Ext_browser"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Ext_browser.png" />
+
 
 </ResourceDictionary>

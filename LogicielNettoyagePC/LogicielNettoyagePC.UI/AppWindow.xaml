@@ -113,7 +113,8 @@
             </StackPanel>
         </Button>
 
-        <Button  Grid.Row="6" Grid.Column="0" Style="{StaticResource BigButton}" Command="{Binding WebCommand}">
+        <Button  Grid.Row="6" Grid.Column="0" Style="{StaticResource BigButton}"
+                  Command ="{Binding ChangePageCommand}" CommandParameter="{x:Static enum:PageKind.Navigator}">
             <StackPanel Orientation="Horizontal">
                 <Image Source="{DynamicResource WebsiteIcon}" Width="20" Height="20"/>
                 <Label  Content="{x:Static resx:ResourceFR.SiteBtnTxt}" Style="{StaticResource TextLabel}" />

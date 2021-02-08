@@ -28,7 +28,6 @@ namespace LogicielNettoyagePC.UI
             WindowTitle = windowTitle;
             CanShowInformation = false;
             ExitCommand = new RelayCommand<EventArgs>(ExecuteExitCommand);
-            WebCommand = new RelayCommand<EventArgs>(ExecuteWebCommand);
             ChangePageCommand = new RelayCommand<object>(ExecuteChangePageCommand);
 
             settingsManager.HistoryChanged += SettingsManager_HistoryChanged;
@@ -55,7 +54,6 @@ namespace LogicielNettoyagePC.UI
 
         public ICommand ChangePageCommand { get; }
         public ICommand ExitCommand { get; }
-        public ICommand WebCommand { get; }
 
         public string WindowTitle
         {
@@ -116,21 +114,7 @@ namespace LogicielNettoyagePC.UI
             Application.Current.Shutdown();
         }
 
-        private void ExecuteWebCommand(EventArgs obj)
-        {
-            try
-            {
-                Process.Start(new ProcessStartInfo("http://anthony-cardinale.fr/pc-cleaner")
-                {
-                    UseShellExecute = true
-                });
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Execute WebCommand ", ex);
-            }
-        }
+      
         #endregion Commands
     }
 }

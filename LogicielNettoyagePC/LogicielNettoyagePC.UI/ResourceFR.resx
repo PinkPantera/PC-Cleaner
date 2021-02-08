@@ -183,6 +183,9 @@
   <data name="ManualOptionsTxt" xml:space="preserve">
     <value>Le menu « Options » vous permettra de modifier la liste des dossiers à traiter.</value>
   </data>
+  <data name="NavigatorTxt" xml:space="preserve">
+    <value>Navigateur</value>
+  </data>
   <data name="NeedToCleanTxt" xml:space="preserve">
     <value>Pour effacer votre ordinateur des fichiers temporaires, cliquez sur "Nettoyer"</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="NewBtnTxt" xml:space="preserve">
     <value>Nouveau</value>
+  </data>
+  <data name="OpenURLInExternalNavigatorTxt" xml:space="preserve">
+    <value>Ouvrir dans le navigateur externe</value>
   </data>
   <data name="PathTxt" xml:space="preserve">
     <value>Emplacement</value>
@@ -227,6 +233,9 @@
   </data>
   <data name="UpdateBtnTxt" xml:space="preserve">
     <value>Mis à jour</value>
+  </data>
+  <data name="UrlTxt" xml:space="preserve">
+    <value>https://github.com/PinkPantera/PC-Cleaner</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>NETTOYAGE PC</value>

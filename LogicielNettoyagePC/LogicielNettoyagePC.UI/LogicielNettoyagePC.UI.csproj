@@ -10,6 +10,7 @@
     <None Remove="Resources\Images\AppLogo.ico" />
     <None Remove="Resources\Images\Cercle.png" />
     <None Remove="Resources\Images\Delete.png" />
+    <None Remove="Resources\Images\Ext_browser.png" />
     <None Remove="Resources\Images\find.png" />
     <None Remove="Resources\Images\History.png" />
     <None Remove="Resources\Images\icons8-clean.png" />
@@ -40,6 +41,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\Delete.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Images\Ext_browser.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Images\Find.png">

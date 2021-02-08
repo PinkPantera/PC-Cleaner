@@ -7,6 +7,7 @@
         History,
         Settings,
         Update,
+        Navigator,
         Unknown
     }
 }

@@ -19,8 +19,11 @@
         <views:HistoryPageView />
     </DataTemplate>
 
-
     <DataTemplate DataType="{x:Type viewModels:UpdatePageViewModel}">
         <views:UpdatePageView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:NavigatorPageViewModel}">
+        <views:NavigatorPageView />
     </DataTemplate>
 </ResourceDictionary>
