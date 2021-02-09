@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
 namespace LogicielNettoyagePC.UI.Converters
 {
-    public class InverseBooleanToVisibility : MarkupExtension, IValueConverter
+    public class InverseBooleanConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var result = Visibility.Visible ;
+            var result = false;
 
-            var visibility = value as bool?;
-
-            if (visibility != null)
+            if (value != null && value is bool)
             {
-                result = !visibility.Value ? Visibility.Visible : Visibility.Collapsed;
+                result = !((bool)value);
             }
-
+           
             return result;
         }
 

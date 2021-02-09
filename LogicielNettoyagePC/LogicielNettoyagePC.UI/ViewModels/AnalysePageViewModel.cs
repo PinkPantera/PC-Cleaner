@@ -2,24 +2,22 @@
 using LogicielNettoyagePC.UI.Common;
 using LogicielNettoyagePC.UI.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace LogicielNettoyagePC.UI.ViewModels
 {
     public class AnalysePageViewModel : ViewModelBase, IPage
     {
-        // private readonly Dictionary<string, DirectoryManager> directoriesToAnalyse = new Dictionary<string, DirectoryManager>();
         private bool selectAll;
         private IDirectoriesProvider directoriesProvider;
         private bool isAnalysed;
         private long spaceToClean;
-        private string dateOfLastAnalises = ResourceFR.NeverTxt;
-        private string operationInProgress;
+        private string operationInProgressText;
+        private bool operationInProgress;
 
         public AnalysePageViewModel(IDirectoriesProvider directoriesProvider)
         {
@@ -27,18 +25,19 @@ namespace LogicielNettoyagePC.UI.ViewModels
 
             CleanCommand = new RelayCommand<EventArgs>(ExecuteCleanCommand);
             AnalyseCommand = new RelayCommand<EventArgs>(ExecuteAnalyseCommand);
-            OperationInProgress = string.Empty;
+            OperationInProgressText = "Test";
+            OperationInProgress = false;
         }
 
         public PageKind PageKind => PageKind.Analyse;
         public string Caption => ResourceFR.Analyzer;
 
-        public string OperationInProgress
+        public string OperationInProgressText
         {
-            get { return operationInProgress; }
-            set 
-            { 
-                SetProperty(ref operationInProgress, value); 
+            get { return operationInProgressText; }
+            set
+            {
+                SetProperty(ref operationInProgressText, value);
             }
         }
 
@@ -48,6 +47,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
             set
             {
                 SetProperty(ref isAnalysed, value);
+                if (value == false)
+                    SelectAll = false;
             }
         }
         public ICommand CleanCommand { get; }
@@ -58,11 +59,12 @@ namespace LogicielNettoyagePC.UI.ViewModels
             get { return spaceToClean; }
             set { SetProperty(ref spaceToClean, value); }
         }
-        public string DateOfLastAnalises
+        public bool OperationInProgress
         {
-            get { return dateOfLastAnalises; }
-            set { SetProperty(ref dateOfLastAnalises, value); }
+            get { return operationInProgress; }
+            set { SetProperty(ref operationInProgress, value); }
         }
+
         public ObservableCollection<DirectoryToDisplay> Directories { get; } = new ObservableCollection<DirectoryToDisplay>();
         public bool SelectAll
         {
@@ -95,55 +97,73 @@ namespace LogicielNettoyagePC.UI.ViewModels
             };
         }
 
-        private void ExecuteCleanCommand(EventArgs obj)
+        private async void ExecuteCleanCommand(EventArgs obj)
         {
-            OperationInProgress = ResourceFR.CleaningInProgressTxt;
-            var directoriesToClean = Directories.Where(item => item.NeedToClean);
+            OperationInProgressText = ResourceFR.CleaningInProgressTxt;
+            OperationInProgress = true;
 
-            if (directoriesToClean.Count() > 0)
-            {
-                foreach (var dir in directoriesToClean)
-                {
-                    directoriesProvider.CleanDirectory(dir.DirectoryPath);
-                    dir.DirectorySize = directoriesProvider.GetDirectorySize(dir.DirectoryPath);
-                    dir.ShowDirectorySize = (dir.DirectorySize != 0);
-                }
+            await ExecuteCleanAsync();
 
-                directoriesProvider.SaveHistory(new Verification(DateTime.Now, directoriesToClean.ToList()));
-            }
-
-            SelectAll = false;
             IsAnalysed = false;
             SpaceToClean = 0;
-            OperationInProgress = string.Empty;
+            OperationInProgress = false;
+            OperationInProgressText = string.Empty;
         }
 
-        private void ExecuteAnalyseCommand(EventArgs obj)
+        private async void ExecuteAnalyseCommand(EventArgs obj)
         {
+            OperationInProgressText = ResourceFR.AnalysisInProgressTxt;
+            OperationInProgress = true;
 
-            long totalSize = 0;
-            OperationInProgress = ResourceFR.AnalysisInProgressTxt;
-            //Thread.Sleep(10000);
-            foreach (var dir in Directories.Where(item => item.IsValid))
+            await ExecuteAnalyseAsync();
+
+            OperationInProgressText = string.Empty;
+            IsAnalysed = true;
+            OperationInProgress = false;
+            SpaceToClean = Directories.Sum(t => t.DirectorySize);
+        }
+
+        private Task ExecuteAnalyseAsync()
+        {
+            return Task.Run(() =>
             {
-                try
+                Thread.Sleep(10000);
+                foreach (var dir in Directories.Where(item => item.IsValid))
                 {
-                    dir.DirectorySize = directoriesProvider.GetDirectorySize(dir.DirectoryPath);
-                    dir.ShowDirectorySize = (dir.DirectorySize != 0);
-                }
-                catch (Exception ex)
-                {
-                    //TODO
-                    //add log
+                    try
+                    {
+                        dir.DirectorySize = directoriesProvider.GetDirectorySize(dir.DirectoryPath);
+                        dir.ShowDirectorySize = (dir.DirectorySize != 0);
+                    }
+                    catch (Exception ex)
+                    {
+                        //TODO
+                        //add log
+                    }
                 }
             }
-
-            totalSize = Directories.Sum(t => t.DirectorySize);
-            SpaceToClean = totalSize;
-            IsAnalysed = true;
-            DateOfLastAnalises = DateTime.Now.ToString();
-            OperationInProgress = string.Empty;
+        );
         }
 
+        private Task ExecuteCleanAsync()
+        {
+            return Task.Run(() =>
+            {
+                var directoriesToClean = Directories.Where(item => item.NeedToClean);
+
+                if (directoriesToClean.Count() > 0)
+                {
+                    foreach (var dir in directoriesToClean)
+                    {
+                        directoriesProvider.CleanDirectory(dir.DirectoryPath);
+                        dir.DirectorySize = directoriesProvider.GetDirectorySize(dir.DirectoryPath);
+                        dir.ShowDirectorySize = (dir.DirectorySize != 0);
+                    }
+
+                    directoriesProvider.SaveHistory(new Verification(DateTime.Now, directoriesToClean.ToList()));
+                }
+
+            } );
+        }
     }
 }
