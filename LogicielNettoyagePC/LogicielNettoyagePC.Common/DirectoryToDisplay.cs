@@ -99,25 +99,6 @@ namespace LogicielNettoyagePC.Common
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public XmlSchema GetSchema()
-        //{
-        //    return null;
-        //}
-
-        //public void ReadXml(XmlReader reader)
-        //{
-        //    reader.ReadStartElement();
-        //    DirectoryName = reader.ReadElementContentAsString(nameof(DirectoryName), "");
-        //    DirectoryPath = reader.ReadElementContentAsString(nameof(DirectoryPath), "");
-        //    reader.ReadEndElement();
-        //}
-
-        //public void WriteXml(XmlWriter writer)
-        //{
-        //    writer.WriteElementString(nameof(DirectoryName), DirectoryName);
-        //    writer.WriteElementString(nameof(DirectoryPath), DirectoryPath);
-        //}
-
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

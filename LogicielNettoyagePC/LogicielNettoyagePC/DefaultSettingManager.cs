@@ -15,8 +15,9 @@ namespace LogicielNettoyagePC.StartUp
 
         private readonly static List<DirectoryManager> defaultFoldersToAnalise = new List<DirectoryManager>
         {
-            new DirectoryManager( @"C:\Windows\Temp" , "Fichier temporaires Windows" ),
-            new DirectoryManager ( System.IO.Path.GetTempPath() , "Fichier temporaires des applications")
+            new DirectoryManager(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Temp") , "Fichier temporaires Windows" ),
+            new DirectoryManager ( System.IO.Path.GetTempPath() , "Fichier temporaires des applications"),
+
         };
 
         private readonly string fileSettingsName;
@@ -122,7 +123,6 @@ namespace LogicielNettoyagePC.StartUp
 
             try
             {
-                var tmp = file.LoadList();
                 ListProcessedDirectories = file.LoadList().ToList();
             }
             catch (Exception ex)

@@ -38,7 +38,14 @@ namespace LogicielNettoyagePC.UI
             ExecuteChangePageCommand(PageKind.Main);
             Version = "Version 1.0.0.";
 
-            DateOfLastAnalises = settingsManager.ListHistories.FirstOrDefault().VerificationDate.ToString();
+            if (settingsManager.ListHistories.Count() > 0)
+            {
+                DateOfLastAnalises = settingsManager.ListHistories.FirstOrDefault().VerificationDate.ToString();
+            }
+            else
+            {
+                DateOfLastAnalises = ResourceFR.NeverTxt;
+            }
         }
 
         private void SettingsManager_HistoryChanged(object sender, HistoryChangedEventArgs e)

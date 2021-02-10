@@ -127,7 +127,6 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             return Task.Run(() =>
             {
-                Thread.Sleep(10000);
                 foreach (var dir in Directories.Where(item => item.IsValid))
                 {
                     try

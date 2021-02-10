@@ -42,7 +42,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             try
             {
-                Process.Start(new ProcessStartInfo("http://anthony-cardinale.fr/pc-cleaner")
+                Process.Start(new ProcessStartInfo(ResourceFR.UrlTxt)
                 {
                     UseShellExecute = true
                 });
@@ -50,7 +50,9 @@ namespace LogicielNettoyagePC.UI.ViewModels
             }
             catch (Exception ex)
             {
-                throw new Exception("Execute WebCommand ", ex);
+                //
+                //TODO
+                //write in log file
             }
         }
     }

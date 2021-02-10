@@ -11,10 +11,6 @@ namespace LogicielNettoyagePC.UI.Helpers
         public static readonly DependencyProperty UrlProperty =
             DependencyProperty.RegisterAttached("Url", typeof(string), typeof(WebBrowserHelper), new UIPropertyMetadata(null, OnUrlChanged));
 
-        // public static readonly DependencyProperty BindableSourceProperty =
-        //DependencyProperty.RegisterAttached("BindableSource", typeof(string), typeof(WebBrowserUtility), new UIPropertyMetadata(null, BindableSourcePropertyChanged));
-
-
         public static string GetUrl(DependencyObject dependencyObject)
         {
             return (string)dependencyObject.GetValue(UrlProperty);

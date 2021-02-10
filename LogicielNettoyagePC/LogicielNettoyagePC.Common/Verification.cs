@@ -21,7 +21,6 @@ namespace LogicielNettoyagePC.Common
         public Verification(DateTime verificationDate, List<DirectoryToDisplay> directories)
         {
             VerificationDate = verificationDate;
-
             Directories = directories; 
         }
 
@@ -60,30 +59,13 @@ namespace LogicielNettoyagePC.Common
             }
             catch (Exception ex)
             {
-                
+                //
+                //TODO
+                //write in log file
             }
         }
 
-
-    //    reader.ReadStartElement();
-    //        var tmp = reader.ReadElementContentAsString(nameof(VerificationDate), "");
-    //    VerificationDate = Convert.ToDateTime(tmp);
-    //        var tt = reader.Name;
-    //        if (reader.Name == nameof(Directories))
-    //        {
-    //            reader.ReadStartElement();
-    //            if (reader.NodeType != XmlNodeType.EndElement)
-    //            {
-    //                while (reader.NodeType == XmlNodeType.Element)
-    //                {
-    //                    if (reader.Name == "directory")
-    //                        Directories.Add(new DirectoryToDisplay(reader));
-    //                }
-    //reader.ReadEndElement();
-    //            }
-    //        }
-    //       reader.ReadEndElement(); //end Verification
-        public void WriteXml(XmlWriter writer)
+         public void WriteXml(XmlWriter writer)
         {
             writer.WriteElementString(nameof(VerificationDate), VerificationDate.ToString());
             writer.WriteStartElement(nameof(Directories));

@@ -21,10 +21,10 @@ namespace LogicielNettoyagePC.UI.Common
         public override string DirectoryPath { get ; set ; }
         public override string DirectoryName { get; set ; }
 
-        public IList<string> CleanSpace()
+        public void CleanSpace()
         {
             var directory = new DirectoryInfo(DirectoryPath);
-            var result = new List<string>();
+
             foreach (var file in directory.GetFiles())
             {
                 try
@@ -33,7 +33,9 @@ namespace LogicielNettoyagePC.UI.Common
                 }
                 catch (Exception ex)
                 {
-                    result.Add(file.FullName);
+                    //
+                    //TODO
+                    //write in log file
                 }
             }
 
@@ -45,11 +47,11 @@ namespace LogicielNettoyagePC.UI.Common
                 }
                 catch (Exception ex)
                 {
-                    result.Add(dir.FullName);
+                    //
+                    //TODO
+                    //write in log file
                 }
             }
-
-            return result;
         }
 
         public long GetDirectorySize()

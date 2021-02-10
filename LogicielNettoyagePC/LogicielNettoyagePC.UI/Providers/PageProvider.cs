@@ -26,15 +26,5 @@ namespace LogicielNettoyagePC.UI.Providers
 
             return page;
         }
-
-        //public IEnumerable<IPage> GetPages()
-        //{
-        //    return new IPage[]
-        //    {
-        //        IoC.Container.Resolve<IPage>("StudentSpace"),
-        //        IoC.Container.Resolve<IPage>("TeacherSpace"),
-        //        IoC.Container.Resolve<IPage>("AdministratorSpace"),
-        //    };
-        //}
     }
 }
