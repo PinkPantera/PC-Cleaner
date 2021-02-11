@@ -53,7 +53,7 @@
     <Style x:Key="CaptionLabel" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#023d4a"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontFamily" Value="Arial Nova"/>
+        <Setter Property="FontFamily" Value="Arial Nova Light"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
 
@@ -63,15 +63,21 @@
         <Setter Property="FontFamily" Value="Arial Nova Light"/>
     </Style>
 
-    <Style x:Key="InformationText" TargetType="{x:Type Label}" BasedOn="{StaticResource TextLabel}">
+    <Style x:Key="InformationText" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#007791"/>
-        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
 
-    <Style x:Key="CopyRightText" TargetType="{x:Type Label}" BasedOn="{StaticResource TextLabel}">
+    <Style x:Key="CopyRightText" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#007791"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="OperationInProgressLabel" TargetType="{x:Type Label}" BasedOn="{StaticResource TextLabel}">
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontStyle" Value="Italic"/>
     </Style>
 
     <Style x:Key="VersionText" TargetType="{x:Type Label}" BasedOn="{StaticResource TextLabel}">
@@ -105,7 +111,7 @@
     <Style x:Key="SmallButtonWhite" TargetType="{x:Type Button}" BasedOn="{StaticResource SmallButton}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="#007791"/>
-        <Setter Property="Padding" Value="5 0 5 0"/>
+        <Setter Property="Padding" Value="2 0 2 0"/>
     </Style>
 
     <Style x:Key="DeleteButton" TargetType="{x:Type Button}">
@@ -117,7 +123,7 @@
     <Style x:Key="AnalyzeButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BigButton}" >
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontFamily" Value="Arial Nova"/>
+        <Setter Property="FontFamily" Value="Arial Nova Light"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
