@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resx="clr-namespace:LogicielNettoyagePC.UI"
         xmlns:converters="clr-namespace:LogicielNettoyagePC.UI.Converters"
+        xmlns:helpers="clr-namespace:LogicielNettoyagePC.UI.Helpers"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:enum="clr-namespace:LogicielNettoyagePC.UI.Common"
         mc:Ignorable="d"
@@ -13,13 +14,14 @@
         Width="800"
         ResizeMode="NoResize"
         Title="{Binding WindowTitle}"
-        Icon="{DynamicResource ResourceKey=ApplicationIcon}">
+        Icon="{DynamicResource ResourceKey=ApplicationIcon}"
+        helpers:WindowCloser.EnableWindowClosing="True">
 
-    <i:Interaction.Triggers>
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Closing" >
             <i:InvokeCommandAction Command="{Binding ExitCommand}" />
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
 
     <Window.Resources>
         <ResourceDictionary>
@@ -37,6 +39,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -121,8 +124,16 @@
             </StackPanel>
         </Button>
 
-        <Label Grid.Row="7" Grid.Column="0" Content="{Binding Version}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
-        <Label Grid.Row="8" Grid.Column="0" Content="{x:Static resx:ResourceFR.CopyrightTxt}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
+        <Button  Grid.Row="7" Grid.Column="0" Style="{StaticResource BigButtonWhite}"
+                  Command ="{Binding ExitCommand}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{DynamicResource Exit}" Width="20" Height="20"/>
+                <Label  Content="{x:Static resx:ResourceFR.ExitBtnTxt}" Style="{StaticResource CaptionLabel}" />
+            </StackPanel>
+        </Button>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="{Binding Version}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
+        <Label Grid.Row="9" Grid.Column="0" Content="{x:Static resx:ResourceFR.CopyrightTxt}" Style="{StaticResource VersionText}" VerticalAlignment="Bottom"/>
 
         <!--Content-->
         <ContentControl Grid.Row="2" Grid.Column="1" Grid.RowSpan="7" Margin=" 10 0 5 20" VerticalAlignment="Top"
@@ -130,7 +141,7 @@
 
         <!--Footer-->
 
-        <Border Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BottomPart}"  Visibility="{Binding CanShowInformation, Converter={converters:BooleanToVisibility}}" >
+        <Border Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource BottomPart}"  Visibility="{Binding CanShowInformation, Converter={converters:BooleanToVisibility}}" >
             <Label Content="{Binding Information}" Style="{StaticResource InformationText}"/>
         </Border>
 

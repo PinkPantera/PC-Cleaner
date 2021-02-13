@@ -15,6 +15,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public MainPageViewModel(IDirectoriesProvider directoriesProvider)
         {
             this.directoriesProvider = directoriesProvider;
+            CanBeClosed = true;
             foreach (var dir in directoriesProvider.DirectoriesToAnalyse)
             {
                 Directories.Add(new DirectoryToDisplay(dir.DirectoryPath, dir.DirectoryName));
@@ -28,6 +29,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             get; set;
         }
+
+        public bool CanBeClosed { get; private set; }
 
         public void Refreshe()
         {

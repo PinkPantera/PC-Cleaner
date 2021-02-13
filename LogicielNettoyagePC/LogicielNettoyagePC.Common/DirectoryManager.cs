@@ -62,7 +62,8 @@ namespace LogicielNettoyagePC.UI.Common
       
         private long CalculateDirectorySize(DirectoryInfo dir)
         {
-            return dir.GetFiles().Sum(f => f.Length) + dir.GetDirectories().Sum(d => CalculateDirectorySize(d));
+            return dir.GetFiles()
+                .Sum(f => f.Length) + dir.GetDirectories().Sum(d => CalculateDirectorySize(d));
         }
 
     }

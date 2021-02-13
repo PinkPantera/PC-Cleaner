@@ -43,6 +43,10 @@ namespace LogicielNettoyagePC
                 UIService.Initialize();
 
                 var mainWindow = UIService.GetAppWindow();
+                mainWindow.Closed += (sender, e) =>
+                 {
+                    Application.Current.Shutdown();
+                 };
                 mainWindow.Show();
             }
             else

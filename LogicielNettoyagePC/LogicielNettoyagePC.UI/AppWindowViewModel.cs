@@ -10,7 +10,7 @@ using LogicielNettoyagePC.Common;
 
 namespace LogicielNettoyagePC.UI
 {
-    public class AppWindowViewModel : ViewModelBase
+    public class AppWindowViewModel : ViewModelBase, ICloseable
     {
         private string windowTitle = ResourceFR.WindowTitle;
         private string topTitle = ResourceFR.TopTitle;
@@ -21,7 +21,6 @@ namespace LogicielNettoyagePC.UI
 
         private IPage selectedPage;
         private readonly IPageProvider pageProvider;
-        private readonly ISettingsManager settingsManager;
 
         public AppWindowViewModel(IPageProvider pageProvider, ISettingsManager settingsManager)
         {
@@ -33,8 +32,6 @@ namespace LogicielNettoyagePC.UI
             settingsManager.HistoryChanged += SettingsManager_HistoryChanged;
 
             this.pageProvider = pageProvider;
-            this.settingsManager = settingsManager;
-
             ExecuteChangePageCommand(PageKind.Main);
             Version = "Version 1.0.0.";
 
@@ -46,11 +43,6 @@ namespace LogicielNettoyagePC.UI
             {
                 DateOfLastAnalises = ResourceFR.NeverTxt;
             }
-        }
-
-        private void SettingsManager_HistoryChanged(object sender, HistoryChangedEventArgs e)
-        {
-            DateOfLastAnalises = e.LastVerification.ToString();
         }
 
         public IPage SelectedPage
@@ -99,7 +91,25 @@ namespace LogicielNettoyagePC.UI
             set { SetProperty(ref dateOfLastAnalises, value); }
         }
 
+        public Action CloseWindow { get; set; }
+
+        public bool CanClose()
+        {
+            var page = pageProvider.GetAllOpenedPages().Where(item => item.CanBeClosed == false).FirstOrDefault();
+            if (page != null)
+            {
+                SelectedPage = page;
+            }
+
+            return page == null;
+        }
+
         #region Commands
+
+        private void SettingsManager_HistoryChanged(object sender, HistoryChangedEventArgs e)
+        {
+            DateOfLastAnalises = e.LastVerification.ToString();
+        }
         private void ExecuteChangePageCommand(object obj)
         {
             if (obj == null)
@@ -118,10 +128,8 @@ namespace LogicielNettoyagePC.UI
 
         private void ExecuteExitCommand(object obj)
         {
-            Application.Current.Shutdown();
+            CloseWindow?.Invoke();
         }
-
-      
         #endregion Commands
     }
 }

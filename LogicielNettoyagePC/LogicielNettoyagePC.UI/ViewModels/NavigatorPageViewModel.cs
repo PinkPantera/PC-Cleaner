@@ -16,6 +16,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             WebCommand = new RelayCommand<EventArgs>(ExecuteWebCommand);
             SourceNavigator = ResourceFR.UrlTxt;
+            CanBeClosed = true;
         }
 
         public ICommand WebCommand { get; }
@@ -32,6 +33,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
             set { SetProperty(ref sourceNavigator, value); }
         }
 
+        public bool CanBeClosed { get; private set; }
 
         public void Refreshe()
         {

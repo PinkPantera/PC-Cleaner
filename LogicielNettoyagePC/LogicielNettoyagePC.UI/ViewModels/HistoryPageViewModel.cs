@@ -15,6 +15,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public HistoryPageViewModel(IDirectoriesProvider directoriesProvider)
         {
             this.directoriesProvider = directoriesProvider;
+            CanBeClosed = true;
         }
 
         public PageKind PageKind => PageKind.History;
@@ -24,6 +25,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public bool IsEnabled { get; set ; }
 
         public ObservableCollection<Verification> Verifications { get; } = new ObservableCollection<Verification>();
+
+        public bool CanBeClosed { get; private set; }
 
         public void Refreshe()
         {

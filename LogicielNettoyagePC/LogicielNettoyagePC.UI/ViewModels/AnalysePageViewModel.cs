@@ -28,6 +28,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
             CancelCommand = new RelayCommand<EventArgs>(ExecuteCancelCommand);
             OperationInProgressText = "Test";
             OperationInProgress = false;
+            CanBeClosed = true;
         }
 
         public PageKind PageKind => PageKind.Analyse;
@@ -72,6 +73,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
             get; set;
         }
 
+        public bool CanBeClosed {get; private set; }
+
         public void Refreshe()
         {
             Directories.Clear();
@@ -94,6 +97,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
             cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
             var timeOutTask = Task.Delay(3000);
+            CanBeClosed = false;
 
             var tasks = new List<Task>();
             try
@@ -130,6 +134,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
                 IsAnalysed = false;
                 OperationInProgress = false;
                 OperationInProgressText = string.Empty;
+                CanBeClosed = true;
             }
         }
 
@@ -144,6 +149,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
             var tasks = new List<Task>();
 
             var timeOutTask = Task.Delay(3000);
+            CanBeClosed = false;
+
             try
             {
                 foreach (var dir in Directories.Where(item => item.IsValid))
@@ -180,6 +187,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
                 IsAnalysed = true;
                 OperationInProgress = false;
                 SpaceToClean = Directories.Sum(t => t.DirectorySize);
+                CanBeClosed = true;
             }
         }
 

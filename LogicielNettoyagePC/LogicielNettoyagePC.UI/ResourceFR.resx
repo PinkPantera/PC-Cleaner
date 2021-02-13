@@ -135,11 +135,17 @@
   <data name="CancelBtnTxt" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="CantCloseApplicationTxt" xml:space="preserve">
+    <value>Impossible de fermer l'application.</value>
+  </data>
   <data name="CleanBtnTxt" xml:space="preserve">
     <value>Nettoyer</value>
   </data>
   <data name="CleaningInProgressTxt" xml:space="preserve">
     <value>Nettoyage en cours ...</value>
+  </data>
+  <data name="CloseApplicationTxt" xml:space="preserve">
+    <value>Fermeture de l'application</value>
   </data>
   <data name="CopyrightTxt" xml:space="preserve">
     <value>Copyright 2021 PinkPantera</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="EmptyMb" xml:space="preserve">
     <value>??? Mb</value>
+  </data>
+  <data name="ExitBtnTxt" xml:space="preserve">
+    <value>Fermer</value>
   </data>
   <data name="FolderInvalid" xml:space="preserve">
     <value>Le dossier n'est pas valide</value>
@@ -206,6 +215,9 @@
   </data>
   <data name="PresentationText" xml:space="preserve">
     <value>NETTOYAGE PC est un logiciel qui nettoie votre PC et libérez de l'espace sur votre disque.</value>
+  </data>
+  <data name="ProcessInProgressTxt" xml:space="preserve">
+    <value>Il y a un processus en cours.</value>
   </data>
   <data name="ResultsOfAnalise" xml:space="preserve">
     <value>Résultats de l'analyse</value>

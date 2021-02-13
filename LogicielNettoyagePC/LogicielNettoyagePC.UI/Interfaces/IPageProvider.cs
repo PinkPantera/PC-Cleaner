@@ -8,5 +8,6 @@ namespace LogicielNettoyagePC.UI.Interfaces
     public interface IPageProvider
     {
         IPage GetPage(PageKind pageKind);
+        List<IPage> GetAllOpenedPages();
     }
 }

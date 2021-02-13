@@ -11,5 +11,6 @@ namespace LogicielNettoyagePC.UI.Interfaces
         string Caption { get; }
         bool IsEnabled { get; set; }
         void Refreshe();
+        bool CanBeClosed { get; }
     }
 }

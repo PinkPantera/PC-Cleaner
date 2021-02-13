@@ -115,6 +115,15 @@ namespace LogicielNettoyagePC.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Impossible de fermer l&apos;application..
+        /// </summary>
+        public static string CantCloseApplicationTxt {
+            get {
+                return ResourceManager.GetString("CantCloseApplicationTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nettoyer.
         /// </summary>
         public static string CleanBtnTxt {
@@ -129,6 +138,15 @@ namespace LogicielNettoyagePC.UI {
         public static string CleaningInProgressTxt {
             get {
                 return ResourceManager.GetString("CleaningInProgressTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermeture de l&apos;application.
+        /// </summary>
+        public static string CloseApplicationTxt {
+            get {
+                return ResourceManager.GetString("CloseApplicationTxt", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace LogicielNettoyagePC.UI {
         public static string EmptyMb {
             get {
                 return ResourceManager.GetString("EmptyMb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fermer.
+        /// </summary>
+        public static string ExitBtnTxt {
+            get {
+                return ResourceManager.GetString("ExitBtnTxt", resourceCulture);
             }
         }
         
@@ -327,6 +354,15 @@ namespace LogicielNettoyagePC.UI {
         public static string PresentationText {
             get {
                 return ResourceManager.GetString("PresentationText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Il y a un processus en cours..
+        /// </summary>
+        public static string ProcessInProgressTxt {
+            get {
+                return ResourceManager.GetString("ProcessInProgressTxt", resourceCulture);
             }
         }
         

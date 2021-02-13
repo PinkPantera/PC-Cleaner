@@ -17,6 +17,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public SettingPageVeiwModel(IDirectoriesProvider directoriesProvider)
         {
             this.directoriesProvider = directoriesProvider;
+            CanBeClosed = true;
 
             foreach (var dir in directoriesProvider.DirectoriesToAnalyse)
             {
@@ -75,6 +76,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public ICommand SaveNewElement { get; }
         public ICommand CanceNewElement { get; }
         public ICommand DeleteDirectoryCommand { get; }
+
+        public bool CanBeClosed { get; private set; }
 
         public void Refreshe()
         {

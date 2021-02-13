@@ -96,11 +96,14 @@
     <!--#region Button-->
     <Style x:Key="BigButton" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#007791"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="BorderBrush" Value="White"/>
-        <Setter Property="Padding" Value="20"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="Padding" Value="20 12"/>
     </Style>
 
+    <Style x:Key="BigButtonWhite" TargetType="{x:Type Button}" BasedOn="{StaticResource BigButton}">
+        <Setter Property="Background" Value="White"/>
+    </Style>
+    
     <Style x:Key="SmallButton" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="#007791"/>
         <Setter Property="BorderThickness" Value="1"/>
