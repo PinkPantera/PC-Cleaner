@@ -19,17 +19,24 @@ namespace LogicielNettoyagePC.UI.ViewModels
         private string operationInProgressText;
         private bool operationInProgress;
         private CancellationTokenSource cancellationTokenSource = null;
+        private string information;
+        private bool canShowInformation;
+
         public AnalysePageViewModel(IDirectoriesProvider directoriesProvider)
         {
             this.directoriesProvider = directoriesProvider;
+            this.directoriesProvider.OnDirectoriesToAnalyseChanged += DirectoriesProvider_OnDirectoriesToAnalyseChanged;
 
             CleanCommand = new RelayCommand<EventArgs>(ExecuteCleanCommand);
             AnalyseCommand = new RelayCommand<EventArgs>(ExecuteAnalyseCommand);
             CancelCommand = new RelayCommand<EventArgs>(ExecuteCancelCommand);
+            RefreshListCommand = new RelayCommand<EventArgs>(ExecuteRefreshListCommand);
             OperationInProgressText = "Test";
             OperationInProgress = false;
             CanBeClosed = true;
-        }
+            CanShowInformation = false;
+            ReloadDirectoriesList();
+         }
 
         public PageKind PageKind => PageKind.Analyse;
         public string Caption => ResourceFR.Analyzer;
@@ -54,6 +61,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
         public ICommand CleanCommand { get; }
         public ICommand AnalyseCommand { get; }
         public ICommand CancelCommand { get; }
+        public ICommand RefreshListCommand { get; }
 
         public long SpaceToClean
         {
@@ -64,6 +72,17 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             get { return operationInProgress; }
             set { SetProperty(ref operationInProgress, value); }
+        }
+        public string Information
+        {
+            get { return information; }
+            set { SetProperty(ref information, value); }
+        }
+
+        public bool CanShowInformation
+        {
+            get { return canShowInformation; }
+            set { SetProperty(ref canShowInformation, value); }
         }
 
         public ObservableCollection<DirectoryToDisplay> Directories { get; } = new ObservableCollection<DirectoryToDisplay>();
@@ -77,17 +96,12 @@ namespace LogicielNettoyagePC.UI.ViewModels
 
         public void Refreshe()
         {
-            Directories.Clear();
-            foreach (var dir in directoriesProvider.DirectoriesToAnalyse)
-            {
-                Directories.Add(new DirectoryToDisplay(dir.DirectoryPath, dir.DirectoryName));
-            };
         }
 
         #region Commands
         private async void ExecuteCleanCommand(EventArgs obj)
         {
-            var directoriesToClean = Directories.Where(item => item.NeedToClean);
+            var directoriesToClean = Directories.Where(item => item.NeedToClean).ToList();
             if (directoriesToClean.Count() == 0)
                 return;
 
@@ -96,7 +110,8 @@ namespace LogicielNettoyagePC.UI.ViewModels
 
             cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
-            var timeOutTask = Task.Delay(3000);
+            var p = GetProgress();
+
             CanBeClosed = false;
 
             var tasks = new List<Task>();
@@ -104,20 +119,22 @@ namespace LogicielNettoyagePC.UI.ViewModels
             {
                 foreach (var dir in directoriesToClean)
                 {
-                    var task = (CleanDirectory(dir.DirectoryPath, token)).ContinueWith((t) =>
-                    {
-                        dir.DirectorySize = t.Result;
-                        dir.ShowDirectorySize = false;
-                    }, TaskContinuationOptions.OnlyOnRanToCompletion);
-
+                    var task = directoriesProvider.CleanDirectoryAsync(dir.DirectoryPath, token, p);
                     tasks.Add(task);
                 };
 
-                var firstTaskFinished = await Task.WhenAny(tasks.Concat(new[] { timeOutTask }));
-                if (firstTaskFinished == timeOutTask)
+                await Task.WhenAll(tasks).ContinueWith((res) =>
                 {
-                    cancellationTokenSource.Cancel();
-                }
+                    OperationInProgressText = ResourceFR.UpdateHistoryFileInProgressTxt;
+                    directoriesProvider.SaveHistoryAsync(new Verification(DateTime.Now, directoriesToClean.ToList())).ContinueWith((_) =>
+                    {
+                        SpaceToClean = 0;
+                        IsAnalysed = false;
+                        OperationInProgress = false;
+                        OperationInProgressText = string.Empty;
+                        CanBeClosed = true;
+                    });
+                });
             }
             catch (OperationCanceledException)
             {
@@ -130,11 +147,9 @@ namespace LogicielNettoyagePC.UI.ViewModels
             finally
             {
                 cancellationTokenSource.Dispose();
-                SpaceToClean = 0;
-                IsAnalysed = false;
-                OperationInProgress = false;
-                OperationInProgressText = string.Empty;
-                CanBeClosed = true;
+
+                // directoriesProvider.SaveHistoryAsync(new Verification(DateTime.Now, directoriesToClean.ToList()));
+
             }
         }
 
@@ -149,24 +164,13 @@ namespace LogicielNettoyagePC.UI.ViewModels
             var tasks = new List<Task>();
 
             CanBeClosed = false;
-            Progress<(string dirPath, long dirSize)> p = new Progress<(string dirPath, long dirSize)>();
-            p.ProgressChanged += (_, result) =>
-              {
-                  Directories
-                  .Where(item => item.DirectoryPath == result.dirPath)
-                  .ForEach(s =>
-                  {
-                      s.DirectorySize = result.dirSize;
-                      s.ShowDirectorySize = true;
-                      s.NeedToClean = (result.dirSize != 0);
-                  });
-              };
+            var p = GetProgress();
 
             try
             {
                 foreach (var dir in Directories.Where(item => item.IsValid))
                 {
-                    var task = AnalyseDirectory(dir.DirectoryPath, token, p);
+                    var task = directoriesProvider.GetDirectorySizeAsync(dir.DirectoryPath, token, p);
                     tasks.Add(task);
                 }
 
@@ -194,44 +198,35 @@ namespace LogicielNettoyagePC.UI.ViewModels
         private void ExecuteCancelCommand(EventArgs obj)
         {
             cancellationTokenSource?.Cancel();
+            OperationInProgressText = ResourceFR.CancelationInProgressTxt; ;
+        }
+
+        private void ExecuteRefreshListCommand(EventArgs obj)
+        {
+            if (CanBeClosed)
+            {
+                ReloadDirectoriesList();
+                SpaceToClean = 0;
+                IsAnalysed = false;
+            }
         }
         #endregion Commands
 
-        private Task AnalyseDirectory(string path, CancellationToken token, IProgress<(string dirPath, long dirSize)> p)
+        private Progress<(string dirPath, long dirSize)> GetProgress()
         {
-            return Task.Run(() =>
+            var p = new Progress<(string dirPath, long dirSize)>();
+
+            p.ProgressChanged += (_, result) =>
             {
-                //TODO need to remove
-                var rng = new Random();
-                Thread.Sleep(1000 + rng.Next(2000, 8000));
-                // need to remove
-
-                if (token.IsCancellationRequested)
+                Directories.Where(item => item.DirectoryPath == result.dirPath)
+                .ForEach(s =>
                 {
-                    token.ThrowIfCancellationRequested();
-                }
-
-                var dirSize = directoriesProvider.GetDirectorySize(path);
-                p?.Report((path, dirSize));
-            });
-        }
-
-        private Task<long> CleanDirectory(string path, CancellationToken token)
-        {
-            return Task.Run(() =>
-            {
-                //TODO need to remove
-                var rng = new Random();
-                Thread.Sleep(1000 + rng.Next(2000, 8000));
-                // need to remove
-
-                if (token.IsCancellationRequested)
-                {
-                    token.ThrowIfCancellationRequested();
-                }
-                directoriesProvider.CleanDirectory(path);
-                return directoriesProvider.GetDirectorySize(path);
-            });
+                    s.DirectorySize = result.dirSize;
+                    s.ShowDirectorySize = (result.dirSize != 0);
+                    s.NeedToClean = (result.dirSize != 0);
+                });
+            };
+            return p;
         }
 
         private void ResetAnalise()
@@ -241,6 +236,23 @@ namespace LogicielNettoyagePC.UI.ViewModels
             {
                 dir.ShowDirectorySize = false;
             }
+        }
+        private void ReloadDirectoriesList()
+        {
+            Directories.Clear();
+            foreach (var dir in directoriesProvider.DirectoriesToAnalyse)
+            {
+                Directories.Add(new DirectoryToDisplay(dir.DirectoryPath, dir.DirectoryName));
+            };
+
+            CanShowInformation = false;
+        }
+
+
+        private void DirectoriesProvider_OnDirectoriesToAnalyseChanged(object sender, DirectoriesToAnalyseChangedEventArgs e)
+        {
+            Information = ResourceFR.UpdateDirectoriesListTxt;
+            CanShowInformation = true;
         }
     }
 }

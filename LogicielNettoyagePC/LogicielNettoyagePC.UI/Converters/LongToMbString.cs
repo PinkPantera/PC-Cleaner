@@ -9,12 +9,14 @@ namespace LogicielNettoyagePC.UI.Converters
 {
     public class LongToMbString : MarkupExtension, IValueConverter
     {
+        private const long OneMb = 1024 * 1024;
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (!(value is long))
                 return String.Empty;
 
-            var result = ((long)value) / 1000000;
+            var result = Math.Round((double)(long)value / OneMb, 3);
 
             return  $"{result.ToString()} Mb";
         }

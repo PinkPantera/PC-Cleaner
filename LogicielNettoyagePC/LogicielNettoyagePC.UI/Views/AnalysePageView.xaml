@@ -23,6 +23,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -61,7 +62,7 @@
 
             <StackPanel Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 5 0 0"
                         Visibility="{Binding OperationInProgress, Converter={converters:BooleanToVisibility}}">
-                <Label Style="{StaticResource OperationInProgressLabel}" HorizontalAlignment="Left"
+                <Label Style="{StaticResource OperationInProgressLabel}" HorizontalAlignment="Left"  VerticalAlignment="Center"
                        Content="{Binding OperationInProgressText}"/>
                 <ProgressBar 
                     IsIndeterminate="{Binding OperationInProgress}" Height="10" Width="100" HorizontalAlignment="Left" />
@@ -71,9 +72,21 @@
                 </Button>
             </StackPanel>
 
-            <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 10 0 10"/>
+            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"  Background="LightCoral" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0 5 0 0" Padding="2"
+                    Visibility="{Binding CanShowInformation, Converter={converters:BooleanToVisibility}}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Content="{Binding Information}" Style="{StaticResource InformationTextWhite }"  VerticalAlignment="Center"/>
+                    <Image Source="{DynamicResource RefreshList}" Width="20" Height="20" Cursor="Hand"  Margin="5 0 0 0" ToolTip="{x:Static resx:ResourceFR.RefreshListTxt}">
+                        <Image.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command ="{Binding RefreshListCommand}" />
+                        </Image.InputBindings>
+                    </Image>
+                </StackPanel>
+            </Border>
 
-            <Border Grid.Row="3"  Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
+            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0 10 0 10"/>
+
+            <Border Grid.Row="4"  Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
                 <ItemsControl Name="lstDirectories" 
                          ItemTemplate="{StaticResource DirectoryControlTemplate}" 
                          ItemsSource="{Binding Directories}" />

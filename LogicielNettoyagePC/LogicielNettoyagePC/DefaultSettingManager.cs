@@ -39,7 +39,8 @@ namespace LogicielNettoyagePC.StartUp
             LoadVerificationsFromXml();
         }
 
-        public event EventHandler<HistoryChangedEventArgs> HistoryChanged;
+        public event EventHandler<HistoryChangedEventArgs> OnHistoryChanged;
+
         public List<DirectoryManager> ListProcessedDirectories { get; private set; } = new List<DirectoryManager>();
         public List<Verification> ListHistories { get; private set; } = new List<Verification>();
 
@@ -69,7 +70,7 @@ namespace LogicielNettoyagePC.StartUp
             ListHistories.Add(verification);
             ListHistories = ListHistories.OrderByDescending(item => item.VerificationDate).Take(10).ToList();
 
-            OnHistoryChanged(new HistoryChangedEventArgs(ListHistories.FirstOrDefault().VerificationDate));
+            HistoryChanged(new HistoryChangedEventArgs(ListHistories.FirstOrDefault().VerificationDate));
             try
             {
                 file.Save(ListHistories);
@@ -84,9 +85,9 @@ namespace LogicielNettoyagePC.StartUp
             return ListHistories;
         }
 
-        protected virtual void OnHistoryChanged(HistoryChangedEventArgs e)
+        protected virtual void HistoryChanged(HistoryChangedEventArgs e)
         {
-            HistoryChanged?.Invoke(this, e);
+            OnHistoryChanged?.Invoke(this, e);
         }
 
         private void LoadVerificationsFromXml()
@@ -107,7 +108,7 @@ namespace LogicielNettoyagePC.StartUp
                     lastVerif = ListHistories.FirstOrDefault().VerificationDate;
                 }
 
-                OnHistoryChanged(new HistoryChangedEventArgs(ListHistories.FirstOrDefault().VerificationDate));
+                HistoryChanged(new HistoryChangedEventArgs(ListHistories.FirstOrDefault().VerificationDate));
             }
             catch (Exception ex)
             {

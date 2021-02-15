@@ -12,11 +12,9 @@ namespace LogicielNettoyagePC.UI.Converters
         {
             var result = Visibility.Collapsed;
            
-            var visibility = value as bool?;
-
-            if (visibility!=null)
+            if (value is bool visibility)
             {
-                result = visibility.Value ? Visibility.Visible : Visibility.Collapsed;
+                result = visibility? Visibility.Visible : Visibility.Collapsed;
             }
 
             return result;

@@ -28,6 +28,8 @@
                          UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Ext_browser.png" />
     <BitmapImage x:Key="Exit"
                          UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/Exit.png" />
+    <BitmapImage x:Key="RefreshList"
+                         UriSource="pack://application:,,,/LogicielNettoyagePC.UI;component/Resources/Images/RefreshList.png" />
 
 
 </ResourceDictionary>

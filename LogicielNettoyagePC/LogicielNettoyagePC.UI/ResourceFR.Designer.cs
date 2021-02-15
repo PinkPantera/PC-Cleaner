@@ -106,6 +106,15 @@ namespace LogicielNettoyagePC.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelation in progress....
+        /// </summary>
+        public static string CancelationInProgressTxt {
+            get {
+                return ResourceManager.GetString("CancelationInProgressTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Annuler.
         /// </summary>
         public static string CancelBtnTxt {
@@ -367,6 +376,15 @@ namespace LogicielNettoyagePC.UI {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mise à jour la liste des dossiers traités.
+        /// </summary>
+        public static string RefreshListTxt {
+            get {
+                return ResourceManager.GetString("RefreshListTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Résultats de l&apos;analyse.
         /// </summary>
         public static string ResultsOfAnalise {
@@ -444,6 +462,24 @@ namespace LogicielNettoyagePC.UI {
         public static string UpdateBtnTxt {
             get {
                 return ResourceManager.GetString("UpdateBtnTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La liste des dossiers traités à été changée.
+        /// </summary>
+        public static string UpdateDirectoriesListTxt {
+            get {
+                return ResourceManager.GetString("UpdateDirectoriesListTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mise à jour le fichier d&apos;historique.
+        /// </summary>
+        public static string UpdateHistoryFileInProgressTxt {
+            get {
+                return ResourceManager.GetString("UpdateHistoryFileInProgressTxt", resourceCulture);
             }
         }
         

@@ -13,7 +13,7 @@ namespace LogicielNettoyagePC.UI.Converters
         {
             var result = false;
 
-            if (value != null && value is bool)
+            if ( value is bool)
             {
                 result = !((bool)value);
             }

@@ -29,7 +29,7 @@ namespace LogicielNettoyagePC.UI
             ExitCommand = new RelayCommand<EventArgs>(ExecuteExitCommand);
             ChangePageCommand = new RelayCommand<object>(ExecuteChangePageCommand);
 
-            settingsManager.HistoryChanged += SettingsManager_HistoryChanged;
+            settingsManager.OnHistoryChanged += SettingsManager_HistoryChanged;
 
             this.pageProvider = pageProvider;
             ExecuteChangePageCommand(PageKind.Main);
@@ -66,6 +66,7 @@ namespace LogicielNettoyagePC.UI
             get { return topTitle; }
             private set { SetProperty(ref topTitle, value); }
         }
+
 
         public string Version
         {

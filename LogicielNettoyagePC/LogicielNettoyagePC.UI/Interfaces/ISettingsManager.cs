@@ -13,6 +13,6 @@ namespace LogicielNettoyagePC.UI.Interfaces
 
         bool UpdateFileSettings(List<DirectoryManager> directories);
         List<Verification> UpdateFileHistory(Verification verification);
-        event EventHandler<HistoryChangedEventArgs> HistoryChanged;
+        event EventHandler<HistoryChangedEventArgs> OnHistoryChanged;
     } 
 }

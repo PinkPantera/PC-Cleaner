@@ -132,6 +132,9 @@
   <data name="AttantionTxt" xml:space="preserve">
     <value>! Attention, pour fonctionner, le logiciel doit être lancé en mode administrateur.</value>
   </data>
+  <data name="CancelationInProgressTxt" xml:space="preserve">
+    <value>Cancelation in progress...</value>
+  </data>
   <data name="CancelBtnTxt" xml:space="preserve">
     <value>Annuler</value>
   </data>
@@ -219,6 +222,9 @@
   <data name="ProcessInProgressTxt" xml:space="preserve">
     <value>Il y a un processus en cours.</value>
   </data>
+  <data name="RefreshListTxt" xml:space="preserve">
+    <value>Mise à jour la liste des dossiers traités</value>
+  </data>
   <data name="ResultsOfAnalise" xml:space="preserve">
     <value>Résultats de l'analyse</value>
   </data>
@@ -245,6 +251,12 @@
   </data>
   <data name="UpdateBtnTxt" xml:space="preserve">
     <value>Mis à jour</value>
+  </data>
+  <data name="UpdateDirectoriesListTxt" xml:space="preserve">
+    <value>La liste des dossiers traités à été changée</value>
+  </data>
+  <data name="UpdateHistoryFileInProgressTxt" xml:space="preserve">
+    <value>Mise à jour le fichier d'historique</value>
   </data>
   <data name="UrlTxt" xml:space="preserve">
     <value>https://github.com/PinkPantera/PC-Cleaner</value>
