@@ -1,5 +1,5 @@
 # PC-Cleaner
-training project to restore knowledge
+Training project to restore knowledges
 
 Realized 
 architectural pattern MWWM, Dependency injection with Unity container.  
