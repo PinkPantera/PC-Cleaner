@@ -73,7 +73,7 @@ namespace LogicielNettoyagePC.UI.ViewModels
             get; set;
         }
 
-        public bool CanBeClosed {get; private set; }
+        public bool CanBeClosed { get; private set; }
 
         public void Refreshe()
         {
@@ -148,29 +148,29 @@ namespace LogicielNettoyagePC.UI.ViewModels
             var token = cancellationTokenSource.Token;
             var tasks = new List<Task>();
 
-            var timeOutTask = Task.Delay(3000);
             CanBeClosed = false;
+            Progress<(string dirPath, long dirSize)> p = new Progress<(string dirPath, long dirSize)>();
+            p.ProgressChanged += (_, result) =>
+              {
+                  Directories
+                  .Where(item => item.DirectoryPath == result.dirPath)
+                  .ForEach(s =>
+                  {
+                      s.DirectorySize = result.dirSize;
+                      s.ShowDirectorySize = true;
+                      s.NeedToClean = (result.dirSize != 0);
+                  });
+              };
 
             try
             {
                 foreach (var dir in Directories.Where(item => item.IsValid))
                 {
-                    var task = AnalyseDirectory(dir.DirectoryPath, token)
-                          .ContinueWith(t =>
-                      {
-                          dir.DirectorySize = t.Result;
-                          dir.ShowDirectorySize = (dir.DirectorySize != 0);
-                          dir.NeedToClean = (dir.DirectorySize != 0);
-                      }, TaskContinuationOptions.OnlyOnRanToCompletion);
-
+                    var task = AnalyseDirectory(dir.DirectoryPath, token, p);
                     tasks.Add(task);
                 }
 
-                var firstTaskFinished = await Task.WhenAny(tasks.Concat(new[] { timeOutTask }));
-                if (firstTaskFinished == timeOutTask)
-                {
-                    cancellationTokenSource.Cancel();
-                }
+                await Task.WhenAll(tasks);
             }
             catch (OperationCanceledException)
             {
@@ -197,15 +197,22 @@ namespace LogicielNettoyagePC.UI.ViewModels
         }
         #endregion Commands
 
-        private Task<long> AnalyseDirectory(string path, CancellationToken token)
+        private Task AnalyseDirectory(string path, CancellationToken token, IProgress<(string dirPath, long dirSize)> p)
         {
             return Task.Run(() =>
             {
+                //TODO need to remove
+                var rng = new Random();
+                Thread.Sleep(1000 + rng.Next(2000, 8000));
+                // need to remove
+
                 if (token.IsCancellationRequested)
                 {
                     token.ThrowIfCancellationRequested();
                 }
-                return directoriesProvider.GetDirectorySize(path);
+
+                var dirSize = directoriesProvider.GetDirectorySize(path);
+                p?.Report((path, dirSize));
             });
         }
 
@@ -213,6 +220,11 @@ namespace LogicielNettoyagePC.UI.ViewModels
         {
             return Task.Run(() =>
             {
+                //TODO need to remove
+                var rng = new Random();
+                Thread.Sleep(1000 + rng.Next(2000, 8000));
+                // need to remove
+
                 if (token.IsCancellationRequested)
                 {
                     token.ThrowIfCancellationRequested();
